@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Phone, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -9,13 +8,25 @@ const navLinks = [
   { label: "Process", href: "#process" },
   { label: "Projects", href: "#projects" },
   { label: "Reviews", href: "#reviews" },
-  { label: "Gallery", href: "#gallery" }, 
+  { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
 ];
 
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+
+  // 🔒 Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
@@ -72,14 +83,14 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur"
+            className="fixed inset-0 z-[9999] bg-slate-950 backdrop-blur overflow-y-auto"
           >
             <motion.div
               initial={{ y: -40 }}
               animate={{ y: 0 }}
               exit={{ y: -40 }}
               transition={{ duration: 0.3 }}
-              className="mx-auto flex h-full max-w-6xl flex-col px-6 py-6"
+              className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-8 pb-24"
             >
               {/* Top bar */}
               <div className="flex items-center justify-between mb-10">
