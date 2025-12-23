@@ -12,7 +12,6 @@ import VideoGallery from "./Components/VideoGallery";
 import FloatingButtons from "./Components/FloatingButtons";
 
 export default function App() {
-
   useEffect(() => {
     const muteAllVideos = () => {
       document.querySelectorAll("video").forEach(video => {
@@ -21,11 +20,9 @@ export default function App() {
         video.volume = 0;
       });
     };
-
-    // Mute immediately
+    
     muteAllVideos();
 
-    // Also mute videos added later (gallery, lazy loads, etc.)
     const observer = new MutationObserver(muteAllVideos);
     observer.observe(document.body, { childList: true, subtree: true });
 
@@ -35,31 +32,35 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <Navbar />
-      <Hero />
 
-      <section id="services" className="py-24 px-4 sm:px-6 lg:px-8">
-        <Services />
-      </section>
+      {/* Prevent navbar overlap on mobile */}
+      <main className="pt-[80px] md:pt-0">
+        <Hero />
 
-      <BeforeAfter />
+        <section id="services" className="py-24 px-4 sm:px-6 lg:px-8">
+          <Services />
+        </section>
 
-      <section id="process" className="py-24 px-4 sm:px-6 lg:px-8">
-        <Process />
-      </section>
+        <BeforeAfter />
 
-      <Projects />
+        <section id="process" className="py-24 px-4 sm:px-6 lg:px-8">
+          <Process />
+        </section>
 
-      <section id="reviews" className="py-24 px-4 sm:px-6 lg:px-8">
-        <Reviews />
-      </section>
+        <Projects />
 
-      <section id="gallery">
-        <VideoGallery />
-      </section>
+        <section id="reviews" className="py-24 px-4 sm:px-6 lg:px-8">
+          <Reviews />
+        </section>
 
-      <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8">
-        <Contact />
-      </section>
+        <section id="gallery">
+          <VideoGallery />
+        </section>
+
+        <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8">
+          <Contact />
+        </section>
+      </main>
 
       <FloatingButtons />
     </div>
