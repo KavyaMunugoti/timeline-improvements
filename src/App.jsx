@@ -1,5 +1,5 @@
 // src/App.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import Services from "./Components/Services";
@@ -12,6 +12,26 @@ import VideoGallery from "./Components/VideoGallery";
 import FloatingButtons from "./Components/FloatingButtons";
 
 export default function App() {
+
+  useEffect(() => {
+    const muteAllVideos = () => {
+      document.querySelectorAll("video").forEach(video => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+      });
+    };
+
+    // Mute immediately
+    muteAllVideos();
+
+    // Also mute videos added later (gallery, lazy loads, etc.)
+    const observer = new MutationObserver(muteAllVideos);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <Navbar />
