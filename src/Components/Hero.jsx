@@ -51,7 +51,7 @@ export default function Hero() {
 
           <div className="mt-4 grid gap-4 text-xs text-slate-300 sm:grid-cols-3">
             <Highlight icon={<Hammer size={16} />} label="Full-service general contracting" />
-            <Highlight icon={<ShieldCheck size={16} />} label="Licensed, insured & COI-ready" />
+            <Highlight icon={<ShieldCheck size={16} />} label="Licensed, Insured & COI-ready" />
             <Highlight icon={<MapPin size={16} />} label="Serving NYC & nearby areas" />
           </div>
         </motion.div>
