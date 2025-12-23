@@ -15,16 +15,19 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  // 🔒 Lock body scroll when mobile menu is open
+  // 🔒 Lock background scrolling + interaction
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
     } else {
       document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     }
 
     return () => {
       document.body.style.overflow = "";
+      document.body.style.touchAction = "";
     };
   }, [open]);
 
@@ -76,23 +79,23 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu overlay */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-slate-950 backdrop-blur overflow-y-auto"
+            className="fixed inset-0 z-[99999] bg-slate-950/98 backdrop-blur pointer-events-auto"
           >
             <motion.div
-              initial={{ y: -40 }}
+              initial={{ y: -20 }}
               animate={{ y: 0 }}
-              exit={{ y: -40 }}
-              transition={{ duration: 0.3 }}
-              className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 pt-8 pb-24"
+              exit={{ y: -20 }}
+              transition={{ duration: 0.25 }}
+              className="flex min-h-screen flex-col px-6 pt-8 pb-28 overflow-y-auto"
             >
-              {/* Top bar */}
+              {/* Header */}
               <div className="flex items-center justify-between mb-10">
                 <div className="text-sm font-semibold text-emerald-400">
                   Timeline Improvements
@@ -102,7 +105,7 @@ export default function Navbar() {
                   className="text-slate-300"
                   aria-label="Close menu"
                 >
-                  <X size={26} />
+                  <X size={28} />
                 </button>
               </div>
 
@@ -120,7 +123,7 @@ export default function Navbar() {
                 ))}
               </nav>
 
-              {/* Mobile CTA */}
+              {/* CTA */}
               <div className="mt-auto pt-10">
                 <a
                   href="tel:3472281313"
