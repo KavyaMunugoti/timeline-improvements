@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Phone, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -15,26 +15,9 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  // 🔒 Lock background scrolling + interaction
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
-    } else {
-      document.body.style.overflow = "";
-      document.body.style.touchAction = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.touchAction = "";
-    };
-  }, [open]);
-
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        
+    <header className="sticky top-0 z-50 bg-slate-950 border-b border-slate-800">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         {/* Logo */}
         <div>
           <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">
@@ -46,13 +29,9 @@ export default function Navbar() {
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 text-sm text-slate-200 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="transition hover:text-emerald-400"
-            >
+        <nav className="hidden md:flex gap-6 text-sm text-slate-200">
+          {navLinks.map(link => (
+            <a key={link.href} href={link.href} className="hover:text-emerald-400">
               {link.label}
             </a>
           ))}
@@ -61,62 +40,57 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <a
           href="tel:3472281313"
-          className="hidden items-center gap-2 rounded-full border border-emerald-400/40 
-                     bg-emerald-500/10 px-4 py-2 text-xs font-semibold 
-                     text-emerald-200 hover:bg-emerald-500/20 transition md:inline-flex"
+          className="hidden md:inline-flex items-center gap-2 rounded-full border border-emerald-400/40 px-4 py-2 text-xs font-semibold text-emerald-200"
         >
           <Phone size={16} />
           Call Now
         </a>
 
         {/* Mobile menu button */}
-        <button
-          onClick={() => setOpen(true)}
-          className="md:hidden text-slate-200"
-          aria-label="Open menu"
-        >
-          <Menu size={24} />
+        <button onClick={() => setOpen(true)} className="md:hidden text-white">
+          <Menu size={26} />
         </button>
       </div>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile slide-in menu */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[99999] bg-slate-950 pointer-events-auto"
-          >
+          <>
+            {/* Dim background */}
             <motion.div
-              initial={{ y: -20 }}
-              animate={{ y: 0 }}
-              exit={{ y: -20 }}
-              transition={{ duration: 0.25 }}
-              className="flex min-h-screen flex-col px-6 pt-8 pb-28 overflow-y-auto"
+              className="fixed inset-0 bg-black/60 z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+            />
+
+            {/* Drawer */}
+            <motion.aside
+              className="fixed right-0 top-0 h-full w-[78%] max-w-sm bg-slate-950 z-50 px-6 py-6 flex flex-col"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-10">
                 <div className="text-sm font-semibold text-emerald-400">
                   Timeline Improvements
                 </div>
-                <button
-                  onClick={() => setOpen(false)}
-                  className="text-slate-300"
-                  aria-label="Close menu"
-                >
-                  <X size={28} />
+                <button onClick={() => setOpen(false)}>
+                  <X size={26} className="text-white" />
                 </button>
               </div>
 
               {/* Links */}
-              <nav className="flex flex-col gap-6 text-xl text-slate-100">
-                {navLinks.map((link) => (
+              <nav className="flex flex-col gap-8 text-lg text-white">
+                {navLinks.map(link => (
                   <a
                     key={link.href}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="transition hover:text-emerald-400"
+                    className="tracking-wide hover:text-emerald-400"
                   >
                     {link.label}
                   </a>
@@ -124,19 +98,17 @@ export default function Navbar() {
               </nav>
 
               {/* CTA */}
-              <div className="mt-auto pt-10">
+              <div className="mt-auto">
                 <a
                   href="tel:3472281313"
-                  className="flex items-center justify-center gap-3 rounded-full 
-                             bg-emerald-500 px-6 py-4 text-lg font-semibold 
-                             text-slate-900 hover:bg-emerald-400 transition"
+                  className="flex items-center justify-center gap-3 rounded-full bg-emerald-500 py-4 text-lg font-semibold text-slate-900"
                 >
                   <Phone size={20} />
                   Call 347-228-1313
                 </a>
               </div>
-            </motion.div>
-          </motion.div>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
     </header>
