@@ -5,7 +5,7 @@ import { Star } from "lucide-react";
 const reviews = [
   {
     name: "Sarah M.",
-    location: "Jersey City, NJ",
+    location: "NewYork City, NYC",
     text:
       "Timeline Improvements handled our kitchen renovation with an incredible level of care. The finishes are flawless, and the process felt calm and organized from day one.",
   },
@@ -17,13 +17,13 @@ const reviews = [
   },
   {
     name: "Anita P.",
-    location: "Union City, NJ",
+    location: "Union City, NYC",
     text:
       "They guided us through design choices without pressure and stayed within budget. The bathroom looks timeless and beautifully executed.",
   },
   {
     name: "Michael L.",
-    location: "Weehawken, NJ",
+    location: "Brooklyn, NYC",
     text:
       "This is how renovations should feel — predictable, clean, and well-managed. The daily updates made a huge difference.",
   },
