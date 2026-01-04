@@ -3,15 +3,15 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const videoFiles = [
-  "VID-20251207-WA0001.mp4",
-  "VID-20251207-WA0002.mp4",
-  "VID-20251207-WA0003.mp4",
-  "VID-20251207-WA0004.mp4",
-  "VID-20251207-WA0005.mp4",
-  "VID-20251207-WA0006.mp4",
-  "VID-20251207-WA0007.mp4",
-  "VID-20251207-WA0008.mp4",
-  "VID-20251207-WA0009.mp4",
+  "Video1.mp4",
+  "Video2.mp4",
+  "Video3.mp4",
+  "Video4.mp4",
+  "Video5.mp4",
+  "Video6.mp4",
+  "Video7.mp4",
+  "Video8.mp4",
+  "Video9.mp4",
 ];
 
 export default function VideoGallery() {
