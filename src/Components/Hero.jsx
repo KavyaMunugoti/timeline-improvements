@@ -66,7 +66,7 @@ export default function Hero() {
         >
           <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/70 shadow-2xl">
             <video
-              src="/Videos/VID-20251207-WA0007.mp4"
+              src="/Videos/Video7.mp4"
               className="h-64 w-full object-cover sm:h-80 md:h-96"
               autoPlay
               muted

@@ -7,19 +7,19 @@ const projects = [
     title: "Open-plan Living & Hall Way",
     location: "Modern condo",
     scope: "Flooring · painting · trim · lighting",
-    src: "/Videos/VID-20251207-WA0004.mp4",
+    src: "/Videos/Video4.mp4",
   },
   {
     title: "Bright, Minimal BedRoom and BathRoom Upgrade",
     location: "Family apartment",
     scope: "Cabinets · counters · backsplash · appliances",
-    src: "/Videos/VID-20251207-WA0006.mp4",
+    src: "/Videos/Video6.mp4",
   },
   {
     title: "Full Kitchen Renovation",
     location: "Entry & circulation",
     scope: "Doors · paint · hardware · lighting",
-    src: "/Videos/VID-20251207-WA0009.mp4",
+    src: "/Videos/Video9.mp4",
   },
 ];
 

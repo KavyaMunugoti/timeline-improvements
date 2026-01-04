@@ -7,6 +7,15 @@ html {
   scroll-behavior: smooth;
 }
 
+video {
+  pointer-events: none;
+}
+
+html {
+  scroll-padding-top: 80px;
+}
+
+
 body {
   @apply bg-slate-950 text-white;
 }
