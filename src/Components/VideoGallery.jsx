@@ -14,6 +14,7 @@ const videoFiles = [
   "Video9.mp4",
 ];
 
+
 export default function VideoGallery() {
   return (
     <section id="gallery" className="bg-slate-950 py-20 text-white">
